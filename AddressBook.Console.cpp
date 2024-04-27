@@ -20,7 +20,7 @@ void showMenu(){
 	printAtCenter("=", '=', 50);
 	std::cout<<"\n1 Insert New Card Item\n" 
 			<<"2 Show All Card Items\n"
-			<<"3 Select A Card Item\n"
+			<<"3 Search A Card Item\n"
 			<<"4 Modify A Card Item\n"
 			<<"5 Delete A Card Item\n";
 	printAtCenter("-", '-', 40);
