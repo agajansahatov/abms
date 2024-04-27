@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Address Book Management System (ABMS) is a software application developed as part of an apprenticeship at Taiyuan University of Technology in May 2022. ABMS is designed to efficiently manage users' contact information, providing essential functionalities for creating, storing, retrieving, updating, and deleting contact details.
+The Address Book Management System (ABMS) is a software application developed as part of an apprenticeship at Taiyuan University of Technology in May 2022. ABMS is designed to efficiently manage users' contact information, providing essential functionalities for creating, storing, retrieving, updating, and deleting contact details. I developed this project using the C++ programming language and Embarcadero RAD Studio IDE, demonstrating expertise in object-oriented programming and software design.
 
 ## Features
 
