@@ -1,0 +1,642 @@
+object AddressBookForm: TAddressBookForm
+  Left = 0
+  Top = 0
+  ActiveControl = DeleteTab
+  Caption = 'Address Book Management System'
+  ClientHeight = 567
+  ClientWidth = 750
+  FormFactor.Width = 500
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Z: TTabControl
+    Align = Client
+    FullSize = True
+    Locked = True
+    Size.Width = 750.000000000000000000
+    Size.Height = 567.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 40.000000000000000000
+    TabIndex = 4
+    TabOrder = 0
+    TabPosition = PlatformDefault
+    Sizes = (
+      750s
+      527s
+      750s
+      527s
+      750s
+      527s
+      750s
+      527s
+      750s
+      527s)
+    object InsertTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 149.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemtoprated'
+      TabOrder = 0
+      Text = 'Insert'
+      ExplicitSize.cx = 129.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object GenderListBox: TComboBox
+        StyleName = 'Gender'
+        Hint = 'Gender'
+        ItemIndex = 2
+        Position.X = 432.000000000000000000
+        Position.Y = 368.000000000000000000
+        Size.Width = 148.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'GenderListBoxStyle1'
+        TabOrder = 1
+        object male: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'male'
+        end
+        object female: TListBoxItem
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          Text = 'female'
+        end
+        object SelectGender: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Gender'
+        end
+      end
+      object NameField: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 4
+        TextSettings.Font.Size = 18.000000000000000000
+        Position.X = 168.000000000000000000
+        Position.Y = 112.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = ' Name'
+        StyledSettings = [Family, Style, FontColor]
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object InsertButton: TButton
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 272.000000000000000000
+        Position.Y = 432.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'INSERT'
+        TextSettings.Font.Size = 18.000000000000000000
+        OnClick = InsertButtonClick
+      end
+      object PhoneNumberField: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 3
+        TextSettings.Font.Size = 18.000000000000000000
+        Position.X = 168.000000000000000000
+        Position.Y = 200.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = ' Phone Number'
+        StyledSettings = [Family, Style, FontColor]
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object EmailField: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 2
+        TextSettings.Font.Size = 18.000000000000000000
+        Position.X = 168.000000000000000000
+        Position.Y = 288.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = ' Email Address'
+        StyledSettings = [Family, Style, FontColor]
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object AgeListBox: TComboBox
+        ItemIndex = 0
+        Position.X = 168.000000000000000000
+        Position.Y = 368.000000000000000000
+        Size.Width = 148.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AgeListBoxStyle1'
+        TabOrder = 0
+        object SelectAge: TListBoxItem
+          IsSelected = True
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Age'
+        end
+      end
+      object Header: TLabel
+        StyledSettings = [Style, FontColor]
+        Position.X = 168.000000000000000000
+        Position.Y = 8.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Cambria'
+        TextSettings.Font.Size = 25.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'INSERTION'
+        TabOrder = 6
+      end
+      object NameLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 168.000000000000000000
+        Position.Y = 80.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Name: '
+        TabOrder = 12
+      end
+      object PhoneNumberLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 168.000000000000000000
+        Position.Y = 168.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Phone Number: '
+        TabOrder = 10
+      end
+      object EmailLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 168.000000000000000000
+        Position.Y = 256.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Email Address: '
+        TabOrder = 9
+      end
+      object AgeLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 168.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Age:  '
+        TabOrder = 8
+      end
+      object GenderLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 432.000000000000000000
+        Position.Y = 336.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Gender: '
+        TabOrder = 7
+      end
+      object StatusLabel: TLabel
+        StyledSettings = [Family, Style]
+        Position.X = 168.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.FontColor = claRed
+        Text = 'Please provide these informations to insert a new card!'
+        TabOrder = 11
+      end
+    end
+    object ShowAllTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 149.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemcontacts'
+      TabOrder = 0
+      Text = 'Show All'
+      OnClick = ShowAllTabClick
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object CardsLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 152.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 465.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'There are 0 cards in total'
+        TabOrder = 0
+      end
+      object ShowAllHeader: TLabel
+        StyledSettings = [Style, FontColor]
+        Position.X = 176.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Cambria'
+        TextSettings.Font.Size = 25.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'ALL CARDS'
+        TabOrder = 6
+      end
+      object Cards: TListBox
+        Position.X = 96.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 569.000000000000000000
+        Size.Height = 369.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        DisableFocusEffect = True
+        ItemHeight = 100.000000000000000000
+        DefaultItemStyles.ItemStyle = 'colorlistboxitemstyle'
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        Viewport.Width = 565.000000000000000000
+        Viewport.Height = 365.000000000000000000
+      end
+    end
+    object SearchTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 149.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemrecent'
+      TabOrder = 0
+      Text = 'Search'
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object SearchField: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 4
+        TextSettings.Font.Size = 18.000000000000000000
+        Position.X = 64.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 401.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = ' Search'
+        StyledSettings = [Family, Style, FontColor]
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label1: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 64.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'Enter any information about cards for searching: '
+        TabOrder = 11
+      end
+      object Label3: TLabel
+        StyledSettings = [Style, FontColor]
+        Position.X = 152.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Cambria'
+        TextSettings.Font.Size = 25.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'SEARCH'
+        TabOrder = 5
+      end
+      object MatchingCards: TListBox
+        Position.X = 64.000000000000000000
+        Position.Y = 200.000000000000000000
+        Size.Width = 593.000000000000000000
+        Size.Height = 289.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 6
+        DisableFocusEffect = True
+        ItemHeight = 100.000000000000000000
+        DefaultItemStyles.ItemStyle = 'colorlistboxitemstyle'
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        Viewport.Width = 589.000000000000000000
+        Viewport.Height = 285.000000000000000000
+      end
+      object MatchingCardsLabel: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 64.000000000000000000
+        Position.Y = 160.000000000000000000
+        Size.Width = 593.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 16.000000000000000000
+        Text = 'There are 0 matching cards'
+        TabOrder = 10
+      end
+      object SearchButton: TButton
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 472.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 185.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 12
+        Text = 'SEARCH'
+        TextSettings.Font.Size = 18.000000000000000000
+        OnClick = SearchButtonClick
+      end
+    end
+    object ModifyTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 149.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemmostrecent'
+      TabOrder = 0
+      Text = 'Modify'
+      OnClick = ModifyTabClick
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object ModificationField: TGroupBox
+        StyledSettings = [Family, Style, FontColor, Other]
+        Position.X = 112.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 545.000000000000000000
+        Size.Height = 377.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'New Informations'
+        TextSettings.Font.Size = 14.000000000000000000
+        TabOrder = 2
+        object PhoneNumberModificationField: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          TextSettings.Font.Size = 18.000000000000000000
+          Position.X = 40.000000000000000000
+          Position.Y = 64.000000000000000000
+          Size.Width = 465.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = ' Phone Number'
+          StyledSettings = [Family, Style, FontColor]
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object EmailModificationField: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          TextSettings.Font.Size = 18.000000000000000000
+          Position.X = 40.000000000000000000
+          Position.Y = 144.000000000000000000
+          Size.Width = 465.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = ' Email Address'
+          StyledSettings = [Family, Style, FontColor]
+          ParentShowHint = False
+          ShowHint = True
+        end
+        object Label4: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 40.000000000000000000
+          Position.Y = 32.000000000000000000
+          Size.Width = 409.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Phone Number: '
+          TabOrder = 10
+        end
+        object Label5: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 40.000000000000000000
+          Position.Y = 112.000000000000000000
+          Size.Width = 409.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Email Address: '
+          TabOrder = 9
+        end
+        object Label6: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 40.000000000000000000
+          Position.Y = 192.000000000000000000
+          Size.Width = 145.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Age:  '
+          TabOrder = 8
+        end
+        object AgeModificationList: TComboBox
+          ItemIndex = 0
+          Position.X = 40.000000000000000000
+          Position.Y = 224.000000000000000000
+          Size.Width = 161.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'AgeListBoxStyle1'
+          TabOrder = 0
+          object Agelist1: TListBoxItem
+            TextSettings.Font.Size = 14.000000000000000000
+            StyledSettings = [Family, Style, FontColor, Other]
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Age'
+          end
+        end
+        object ModifyButton: TButton
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 128.000000000000000000
+          Position.Y = 304.000000000000000000
+          Size.Width = 297.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 36
+          Text = 'MODIFY'
+          TextSettings.Font.Size = 16.000000000000000000
+        end
+        object Label7: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 360.000000000000000000
+          Position.Y = 192.000000000000000000
+          Size.Width = 145.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 16.000000000000000000
+          Text = 'Gender: '
+          TabOrder = 7
+        end
+        object GenderModificationList: TComboBox
+          StyleName = 'Gender'
+          Hint = 'Gender'
+          ItemIndex = 0
+          Position.X = 357.000000000000000000
+          Position.Y = 224.000000000000000000
+          Size.Width = 148.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'GenderListBoxStyle1'
+          TabOrder = 1
+          object ListBoxItem2: TListBoxItem
+            TextSettings.Font.Size = 14.000000000000000000
+            StyledSettings = [Family, Style, FontColor, Other]
+            IsSelected = True
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Gender'
+          end
+          object ListBoxItem3: TListBoxItem
+            TabOrder = 1
+            Text = 'male'
+          end
+          object ListBoxItem4: TListBoxItem
+            Size.Width = 19.000000000000000000
+            Size.Height = 19.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            Text = 'female'
+          end
+        end
+      end
+      object Label2: TLabel
+        StyledSettings = [Style, FontColor]
+        Position.X = 176.000000000000000000
+        Position.Y = 16.000000000000000000
+        Size.Width = 409.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Cambria'
+        TextSettings.Font.Size = 25.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'MODIFICATION'
+        TabOrder = 1
+      end
+      object ModificationCardListBox: TComboBox
+        ItemIndex = 0
+        Position.X = 192.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 393.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AgeListBoxStyle1'
+        TabOrder = 0
+        object ListBoxItem1: TListBoxItem
+          TextSettings.Font.Size = 16.000000000000000000
+          StyledSettings = [Family, Style, FontColor, Other]
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = ' Select a card to modify'
+        end
+      end
+      object ModificationStatusLabel: TLabel
+        StyledSettings = [Family, Style]
+        Position.X = 128.000000000000000000
+        Position.Y = 120.000000000000000000
+        Size.Width = 497.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = claRed
+        TabOrder = 9
+      end
+    end
+    object DeleteTab: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 152.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Delete'
+      OnClick = DeleteTabClick
+      ExplicitSize.cx = 125.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object Label8: TLabel
+        StyledSettings = [Style, FontColor]
+        Position.X = 280.000000000000000000
+        Position.Y = 64.000000000000000000
+        Size.Width = 217.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Cambria'
+        TextSettings.Font.Size = 25.000000000000000000
+        TextSettings.HorzAlign = Center
+        Text = 'DELETION'
+        TabOrder = 1
+      end
+      object DeletionCardListBox: TComboBox
+        ItemIndex = 0
+        Position.X = 200.000000000000000000
+        Position.Y = 128.000000000000000000
+        Size.Width = 393.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'AgeListBoxStyle1'
+        TabOrder = 0
+        object DeletionCardListItem1: TListBoxItem
+          TextSettings.Font.Size = 16.000000000000000000
+          StyledSettings = [Family, Style, FontColor, Other]
+          Size.Width = 19.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = ' Select a card to delete'
+        end
+      end
+      object DeleteButton: TButton
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 416.000000000000000000
+        Position.Y = 216.000000000000000000
+        Size.Width = 177.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'DELETE'
+        TextSettings.Font.Size = 18.000000000000000000
+      end
+    end
+  end
+end

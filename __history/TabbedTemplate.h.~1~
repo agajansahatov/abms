@@ -1,0 +1,32 @@
+//---------------------------------------------------------------------------
+
+#ifndef TabbedTemplateH
+#define TabbedTemplateH
+//---------------------------------------------------------------------------
+#include <System.Classes.hpp>
+#include <FMX.Controls.hpp>
+#include <FMX.Forms.hpp>
+#include <FMX.Gestures.hpp>
+#include <FMX.StdCtrls.hpp>
+#include <FMX.TabControl.hpp>
+#include <FMX.Types.hpp>
+//---------------------------------------------------------------------------
+class TTabbedForm : public TForm
+{
+__published:	// IDE-managed Components
+	TToolBar *HeaderToolBar;
+	TLabel *ToolBarLabel;
+	TTabControl *TabControl1;
+	TTabItem *TabItem1;
+	TTabItem *TabItem2;
+	TTabItem *TabItem3;
+	TTabItem *TabItem4;
+	void __fastcall FormCreate(TObject *Sender);
+private:	// User declarations
+public:		// User declarations
+	__fastcall TTabbedForm(TComponent* Owner);
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TTabbedForm *TabbedForm;
+//---------------------------------------------------------------------------
+#endif

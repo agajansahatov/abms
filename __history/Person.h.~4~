@@ -1,0 +1,49 @@
+#ifndef PERSON_H
+#define PERSON_H
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <regex>
+#include <exception>
+
+class Person{
+	char name[50];
+	char tel[30];
+	char email[100];
+	int age;
+	char gender[6];
+	friend std::ostream& operator<<(std::ostream&, Person&);
+
+public:
+	//Constructors
+	Person();
+	~Person();
+
+	//Checkers
+	static bool isNumber(const std::string&);
+	static bool isValidPhoneNumber(const std::string&);
+	static bool isValidEmail(const std::string&);
+	static bool isEmpty(const std::string&);
+
+	//Setters
+	void setName(const std::string&);
+	void setTel(const std::string&);
+	void setEmail(const std::string&);
+	void setAge(const std::string&);
+	void setGender(const std::string&);
+	
+	//Getters
+	std::string getName();
+	std::string getTel();
+	std::string getEmail();
+	int getAge();
+	std::string getGender();
+
+	std::string toString(){
+		std::string s;
+		s = "Name: " + person.name + "\nTel: " + person.tel + "\nEmail: "
+				<< person.email + "\nAge: " + person.age + "\nGender: " + person.gender;
+	}
+};
+
+#endif

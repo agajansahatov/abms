@@ -5,6 +5,7 @@
 #include <string>
 #include <regex>
 #include <exception>
+#include <sstream>
 
 class Person{
 	char name[50];
@@ -39,6 +40,7 @@ public:
 	int getAge();
 	std::string getGender();
 
+	std::string toString();
 };
 
 #endif

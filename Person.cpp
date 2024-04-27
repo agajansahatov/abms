@@ -2,7 +2,7 @@
 #define PERSON
 
 	#include "Person.h"
-	
+
 	//Constructors
 	Person::Person(){};
 	Person::~Person(){};
@@ -10,18 +10,18 @@
 	//Checkers
 	bool Person::isNumber(const std::string &s){
 		std::string expr = "[0-9]+";
-		const std::regex pattern(expr);
-		return regex_match(s, pattern);
+		const std::regex regexRule(expr);
+		return regex_match(s, regexRule);
 	}
 	bool Person::isValidPhoneNumber(const std::string &s){
 		std::string expr = "^(\\+\\d{1,3}( )?)?((\\(\\d{1,3}\\))|\\d{1,3})[- .]?\\d{3,4}[- .]?\\d{4}$";
-		const std::regex pattern(expr);
-		return regex_match(s, pattern);
+		const std::regex regexRule(expr);
+		return regex_match(s, regexRule);
 	}
 	bool Person::isValidEmail(const std::string &s){
 		std::string expr = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-		const std::regex pattern(expr);
-		return regex_match(s, pattern);
+		const std::regex regexRule(expr);
+		return regex_match(s, regexRule);
 	}
 	bool Person::isEmpty(const std::string &s){
 		if(s == "")
@@ -88,9 +88,16 @@
 		return this->gender;
 	}
 
+	std::string Person::toString(){
+		std::stringstream s;
+		s << "Name: " << name << "\nTel: " << tel << "\nEmail: "
+				<< email << "\nAge: " << age << "\nGender: " << gender;
+		return s.str();
+	}
+
 	//Overload
 	std::ostream& operator<<(std::ostream &output, Person &person){
-		output << "Name: " << person.name << "\nTel: " << person.tel << "\nEmail: " 
+		output << "Name: " << person.name << "\nTel: " << person.tel << "\nEmail: "
 				<< person.email << "\nAge: " << person.age << "\nGender: " << person.gender;
 
 		return output;

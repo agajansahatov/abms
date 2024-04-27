@@ -1,0 +1,322 @@
+//---------------------------------------------------------------------------
+
+#include <fmx.h>
+#include <System.UITypes.hpp>
+#pragma hdrstop
+#include "AddressBook.h"
+
+#include <fstream>
+#include <map>
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.fmx"
+TAddressBookForm *AddressBookForm;
+
+std::vector<Person> people;
+std::string filename = "abms.bin";
+
+int getIndexOf(const std::string &name, std::vector<Person> &people){
+	for(int i=0; i<people.size(); ++i){
+		if(people[i].getName() == name)
+			return i;
+	}
+	return -1;
+}
+
+//---------------------------------------------------------------------------
+__fastcall TAddressBookForm::TAddressBookForm(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TAddressBookForm::FormCreate(TObject *Sender)
+{
+	// This defines the default active tab at runtime
+	//TabControl1->ActiveTab = TabItem1;
+
+	for(int i=1; i<=150; ++i){
+		AgeListBox->Items->Add(i);
+		AgeModificationList->Items->Add(i);
+	}
+
+	//Reading all informations from storage (from <filename> file)
+	ifstream file;
+	file.open(filename, ios::binary | ios::in);
+	if (file) {
+    	Person person;
+		while(file.read((char*)&person, sizeof(person))) {
+			people.push_back(person);
+		}
+		file.close();
+	}
+
+    std::string str =  "There are " + std::to_string(people.size()) + " cards in total.\n\n";
+	CardsLabel->Text = str.c_str();
+
+	for(int i=0; i<people.size(); ++i){
+		std::string s = "#CARD" + std::to_string(i);
+		s += "\n" + people[i].toString() + "\n\n";
+		Cards->Items->Add(s.c_str());
+		ModificationCardListBox->Items->Add(people[i].getName().c_str());
+		DeletionCardListBox->Items->Add(people[i].getName().c_str());
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TAddressBookForm::InsertButtonClick(TObject *Sender){
+	try{
+		Person person;
+		std::string input = "";
+		AnsiString text;
+
+		text = NameField->Text;
+		input = text.c_str();
+		if(getIndexOf(input, people) > -1)
+			throw std::exception("This user already exists!");
+		person.setName(input);
+
+		text = PhoneNumberField->Text;
+		input = text.c_str();
+		person.setTel(input);
+
+		text = EmailField->Text;
+		input = text.c_str();
+		person.setEmail(input);
+
+		text = AgeListBox->Selected->Text;
+		input = text.c_str();
+		if(input == "Age")
+			throw std::exception("Please select age!");
+		person.setAge(input);
+
+		text = GenderListBox->Selected->Text;
+		input = text.c_str();
+		if(input == "Gender")
+			throw std::exception("Please select gender!");
+		person.setGender(input);
+
+		//Adding new person to vector in the memory
+		people.push_back(person);
+
+		//Adding new person to file in the storage
+		ofstream file;
+		file.open(filename, ios::binary | ios::out | ios::app);
+		if (!file) {
+			StatusLabel->Text = "Error in opening file! All data will be only stored in the memory.";
+		}else{
+			file.write((char*)&person, sizeof(person));
+			file.close();
+		}
+        StatusLabel->Text = "Insertion Successful!";
+	}catch(std::exception &e){
+		StatusLabel->Text = e.what();
+	}
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TAddressBookForm::ShowAllTabClick(TObject *Sender)
+{
+	std::string str =  "There are " + std::to_string(people.size()) + " cards in total.\n\n";
+	CardsLabel->Text = str.c_str();
+	Cards->Items->Clear();
+
+	for(int i=0; i<people.size(); ++i){
+		std::string s = "#CARD" + std::to_string(i);
+		s += "\n" + people[i].toString() + "\n\n";
+		Cards->Items->Add(s.c_str());
+	}
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TAddressBookForm::SearchButtonClick(TObject *Sender)
+{
+		AnsiString text = SearchField->Text;
+		std::string search = text.c_str();
+
+        int numberOfMatches = 0;
+		std::map<int, Person> matches;
+		for(int i=0; i<people.size(); ++i){
+			if(people[i].getName().c_str() == search || people[i].getTel().c_str() == search ||
+				people[i].getEmail().c_str() == search || std::to_string(people[i].getAge()).c_str() == search ||
+				people[i].getGender().c_str() == search){
+				matches.insert({i+1, people[i]});
+				numberOfMatches++;
+			}
+		}
+
+		search = "There are " + std::to_string(numberOfMatches) + " cards match this information.";
+		MatchingCardsLabel->Text = search.c_str();
+		for(auto& [index, person] : matches){
+			std::string s = "#CARD" + std::to_string(index);
+			s += "\n" + person.toString() + "\n\n";
+			MatchingCards->Items->Add(s.c_str());
+		}
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TAddressBookForm::ModifyTabClick(TObject *Sender)
+{
+	ModificationCardListBox->Items->Clear();
+	ModificationCardListBox->Items->Add(" Select a card to modify");
+	ModificationCardListBox->ItemIndex = 0;
+	for(int i=0; i<people.size(); ++i)
+		ModificationCardListBox->Items->Add(people[i].getName().c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TAddressBookForm::DeleteTabClick(TObject *Sender)
+{
+	DeletionCardListBox->Items->Clear();
+	DeletionCardListBox->Items->Add(" Select a card to delete");
+    DeletionCardListBox->ItemIndex = 0;
+	for(int i=0; i<people.size(); ++i)
+		DeletionCardListBox->Items->Add(people[i].getName().c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TAddressBookForm::DeleteButtonClick(TObject *Sender)
+{
+	AnsiString text = DeletionCardListBox->Selected->Text;
+	std::string name = text.c_str();
+	if(name == " Select a card to delete"){
+		DeletionLabel->Text = "Please select a card!";
+        return;
+	}
+
+	auto iterator = people.end();
+	for (auto i = people.begin(); i != people.end(); ++i){
+		if((*i).getName() == name){
+			iterator = i;
+		}
+	}
+
+	if(iterator == people.end())
+		return;
+
+	Person person = *iterator;
+	people.erase(iterator);
+
+	//Deleting from file
+	fstream original, temp;
+	original.open(filename, ios::in | ios::binary);
+	if(!original){
+		DeletionLabel->Text = "\nCouldn't open file. It hasn't been deleted from file!";
+	}else{
+		temp.open("temp.bin", ios::out | ios::app | ios::binary);
+		if(!temp){
+			DeletionLabel->Text = "\nCouldn't create new file. It hasn't been deleted from file!";
+		}else{
+			Person p;
+			while (original.read((char*)&p, sizeof(p))) {
+				if(p.getName() != person.getName())
+					temp.write((char*)&p, sizeof(p));
+			}
+			original.close();
+			temp.close();
+
+			std::remove(filename.c_str());
+			std::rename("temp.bin", filename.c_str());
+		}
+	}
+
+	std::string s = name + "'s deleted successfully!";
+	DeletionLabel->Text = s.c_str();
+
+    DeletionCardListBox->Items->Clear();
+	DeletionCardListBox->Items->Add(" Select a card to delete");
+    DeletionCardListBox->ItemIndex = 0;
+	for(int i=0; i<people.size(); ++i)
+		DeletionCardListBox->Items->Add(people[i].getName().c_str());
+}
+//---------------------------------------------------------------------------
+
+
+
+
+void __fastcall TAddressBookForm::ModifyButtonClick(TObject *Sender)
+{
+try{
+		std::string input = "";
+		AnsiString text;
+
+		text = ModificationCardListBox->Selected->Text;
+		text = text.c_str();
+		if(text == " Select a card to modify"){
+			throw std::exception("Please select a card!");
+		}
+
+		auto iterator = people.end();
+		for (auto i = people.begin(); i != people.end(); ++i){
+			if((*i).getName() == text.c_str()){
+				iterator = i;
+			}
+		}
+
+		if(iterator == people.end())
+			throw std::exception("Couldn't find this card!");
+
+		Person person = *iterator;
+
+		text = PhoneNumberModificationField->Text;
+		input = text.c_str();
+		person.setTel(input);
+
+		text = EmailModificationField->Text;
+		input = text.c_str();
+		person.setEmail(input);
+
+		text = AgeModificationList->Selected->Text;
+		input = text.c_str();
+		if(input == "Age")
+			throw std::exception("Please select age!");
+		person.setAge(input);
+
+		text = GenderModificationList->Selected->Text;
+		input = text.c_str();
+		if(input == "Gender")
+			throw std::exception("Please select gender!");
+		person.setGender(input);
+
+		//Updating in storage file
+		fstream original, temp;
+		original.open(filename, ios::in | ios::binary);
+		if(!original){
+			ModificationStatusLabel->Text = "\nCouldn't open file. It hasn't been deleted from file!";
+		}else{
+			temp.open("temp.bin", ios::out | ios::app | ios::binary);
+			if(!temp){
+				ModificationStatusLabel->Text = "\nCouldn't create new file. It hasn't been deleted from file!";
+			}else{
+				bool isFound = false;
+				Person p;
+				while (original.read((char*)&p, sizeof(p))) {
+					if(p.getName() == person.getName()){
+						temp.write((char*)&person, sizeof(person));
+						isFound = true;
+					}else{
+						temp.write((char*)&p, sizeof(p));
+					}
+				}
+				if(isFound == false){
+					temp.write((char*)&person, sizeof(person));
+				}
+				original.close();
+				temp.close();
+
+				std::remove(filename.c_str());
+				std::rename("temp.bin", filename.c_str());
+			}
+		}
+		ModificationStatusLabel->Text = "Modification Successful!";
+	}catch(std::exception &e){
+		ModificationStatusLabel->Text = e.what();
+	}
+}
+//---------------------------------------------------------------------------
