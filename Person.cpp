@@ -5,13 +5,6 @@
 	
 	//Constructors
 	Person::Person(){};
-	Person::Person(std::string name, std::string tel, std::string email, int age, std::string gender){
-		this->name = name;
-		this->tel = tel;
-		this->email = email;
-		this->age = age;
-		this->gender = gender;
-	}
 	Person::~Person(){};
 
 	//Checkers
@@ -44,19 +37,22 @@
 	void Person::setName(const std::string &name){
 		if(isEmpty(name))
 			throw std::exception("Please enter a name first!");
-		this->name = name;
+		if(name.length() > 100)
+			throw std::exception("Length of name should be less than 100!");
+
+		std::strcpy(this->name, name.c_str());
 	}
 	void Person::setTel(const std::string &tel){
-		if(!isValidPhoneNumber(tel))
+		if(!isValidPhoneNumber(tel) || tel.length() > 30)
 			throw std::exception("Please enter a valid phone number!");
 		
-		this->tel = tel;
+		std::strcpy(this->tel, tel.c_str());
 	}
 	void Person::setEmail(const std::string &email){
-		if(!isValidEmail(email))
+		if(!isValidEmail(email) || email.length() > 100)
 			throw std::exception("Please enter a valid email!");
 		
-		this->email = email;
+		std::strcpy(this->email, email.c_str());
 	}
 	void Person::setAge(const std::string &s_age){
 		if(!isNumber(s_age))
@@ -71,7 +67,8 @@
 	void Person::setGender(const std::string &gender){
 		if(gender != "male" && gender != "female")
 			throw std::exception("Enter 'male' or 'female' only!");
-		this->gender = gender;
+
+		std::strcpy(this->gender, gender.c_str());
 	}
 
 	//Getters

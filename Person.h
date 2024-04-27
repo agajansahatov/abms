@@ -1,23 +1,22 @@
 #ifndef PERSON_H
 #define PERSON_H
-
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <regex>
 #include <exception>
 
 class Person{
-	std::string name;
-	std::string tel;
-	std::string email;
+	char name[50];
+	char tel[30];
+	char email[100];
 	int age;
-	std::string gender;
+	char gender[6];
 	friend std::ostream& operator<<(std::ostream&, Person&);
 
 public:
 	//Constructors
 	Person();
-	Person(std::string, std::string, std::string, int, std::string);
 	~Person();
 
 	//Checkers
